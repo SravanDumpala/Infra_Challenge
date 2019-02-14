@@ -1,0 +1,27 @@
+{% for host in groups['tomcat-server'] %}
+
+define host{
+        use                     generic-host
+        host_name               server-{{ host[item].private_ip }}
+        alias                   server-{{ host[item].private_ip }}
+        address                 {{ host[item].private_ip }}        
+}
+
+define service {
+        host_name               server-{{ host[item].private_ip }}
+        service_description     Check Load
+        check_command           check_nrpe_1arg!check_load
+        check_interval          1
+        use                     generic-service
+}
+
+define service {
+        host_name               server-{{ host[item].private_ip }}
+        service_description     Check Total Procs
+        check_command           check_nrpe_1arg!check_total_procs
+        check_interval          1
+        use                     generic-service
+}
+
+{% endfor %}
+

@@ -1,0 +1,15 @@
+---
+
+keypair: ansible_demo
+region: us-east-2
+instance_type: t2.micro
+image: ami-0970ab4b97fe3a913 # Ubuntu Server 14.04 LTS (HVM), SSD Volume Type
+tag_ec2_current: launched
+subnets:
+- subnet-dfb0f1b7
+vpc_id: vpc-3be0b053
+
+
+#ami: ami-8d756fe4
+
+
